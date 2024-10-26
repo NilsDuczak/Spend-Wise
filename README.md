@@ -1,4 +1,4 @@
-# 📊 Budget App
+# 📊 Spend Wise 
 
 A simple yet effective budget management application that allows users to track their income and expenses. The app features an intuitive interface for entering budget amounts, adding expenses, and displaying real-time financial summaries.
 
