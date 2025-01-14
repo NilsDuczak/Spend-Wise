@@ -1,74 +1,77 @@
 "use strict";
 
+// Elemente aus dem DOM auswählen
 const errorMessage = document.querySelector(".error_message");
 const budgetInput = document.querySelector(".budget_input");
-const expensesDel = document.querySelector(".expenses_input");
+const expensesInput = document.querySelector(".expenses_input");
 const expensesAmount = document.querySelector(".expenses_amount");
 const tableRecord = document.querySelector(".table_data");
 const cardsContainer = document.querySelector(".cards");
 
-//============ Cards =============
+// Karten-Elemente aus dem DOM auswählen
 const budgetCard = document.querySelector(".budget_card");
 const expensesCard = document.querySelector(".expenses_card");
 const balanceCard = document.querySelector(".balance_card");
 
+//  Variablen Initialisieren
 let itemList = [];
 let itemId = 1;
 
-//============ Button Events =============
+// Button-Events
 function btnEvents() {
   const btnBudgetCal = document.querySelector("#btn_budget");
   const btnExpensesCal = document.querySelector("#btn_expenses");
 
-  //============ Budget Event =============
+  // Event-Listener für Budget-Button
   btnBudgetCal.addEventListener("click", (e) => {
     e.preventDefault();
     budgetFun();
   });
 
-  //============ Expenses Event =============
+  // Event-Listener für Ausgaben-Button
   btnExpensesCal.addEventListener("click", (e) => {
     e.preventDefault();
-    expensesFun();
+    expensesFun(); // Ausgaben-Funktion aufrufen
   });
 }
 
-//============= Load Storage Data =========
+// Daten laden und Event-Listener hinzufügen, wenn das Dokument geladen ist
 document.addEventListener("DOMContentLoaded", () => {
   btnEvents();
 
-  // Budget aus dem Speicher laden
+  // Budget aus dem Local Storage laden
   const storedBudget = localStorage.getItem("budget");
   if (storedBudget) {
     budgetCard.textContent = storedBudget;
   }
 
-  // Expenses aus dem Speicher laden
+  // Ausgaben aus dem Local Storage laden
   const storedExpenses = localStorage.getItem("expenses");
   if (storedExpenses) {
     itemList = JSON.parse(storedExpenses);
     itemId = itemList.length > 0 ? itemList[itemList.length - 1].id + 1 : 1;
 
-    // Gerenderte gespeicherte Einträge hinzufügen
+    // Jede gespeicherte Ausgabe hinzufügen
     itemList.forEach((expense) => addExpensesFun(expense));
   }
 
-  showBalanceFun();
+  showBalanceFun(); // Saldo anzeigen
 });
 
-//============ Expenses Function =============
+// Funktion zum Hinzufügen von Ausgaben
 function expensesFun() {
-  let expensesDescValue = expensesDel.value;
+  let expensesDescValue = expensesInput.value;
   let expensesAmountValue = expensesAmount.value;
 
+  //  Eingaben korrekt?
   if (expensesDescValue == "" || expensesAmountValue == "" || budgetInput < 0) {
     errorMessageFun("Please Enter Expenses Desc or Expense Amount!");
   } else {
     let amount = parseInt(expensesAmountValue);
     expensesAmount.value = "";
-    expensesDel.value = "";
+    expensesInput.value = "";
 
-    // Store Value inside the object
+    // Ausgabe-Objekt erstellen
     let expenses = {
       id: itemId,
       title: expensesDescValue,
@@ -78,35 +81,35 @@ function expensesFun() {
     itemId++;
     itemList.push(expenses);
 
-    // Daten im Local Storage speichern
+    // Ausgaben im Local Storage speichern
     localStorage.setItem("expenses", JSON.stringify(itemList));
 
-    // add expenses
+    // Ausgabe hinzufügen und Saldo aktualisieren
     addExpensesFun(expenses);
     showBalanceFun();
   }
 }
 
-//============ Add Expenses Function =============
-function addExpensesFun(expensesPara) {
+//  Hinzufügen von Ausgaben zu Details
+function addExpensesFun(expenses) {
   const html = `<ul class="tbl_tr_content">
-                    <li data-id=${expensesPara.id}>${expensesPara.id}</li>
-                    <li>${expensesPara.title}</li>
-                    <li>${expensesPara.amount}<span>€</span></li>
+                    <li data-id=${expenses.id}>${expenses.id}</li>
+                    <li>${expenses.title}</li>
+                    <li>${expenses.amount}<span>€</span></li>
                     <li>
                         <button type="button" class="btn_edit">Edit</button>
-                        <button type="button" class="btn_delete">Delete</button>
+                        <button type="button" class="btn_delete">Löschen</button>
                     </li>
                  </ul>`;
 
   tableRecord.insertAdjacentHTML("beforeend", html);
 
-  //============ Edit =============
+  // Event-Listener für Bearbeiten- und Löschen-Buttons
   const btnEdit = document.querySelectorAll(".btn_edit");
   const btnDelete = document.querySelectorAll(".btn_delete");
   const contentID = document.querySelectorAll(".tbl_tr_content");
 
-  //============ EditButton =============
+  // Bearbeiten-Button-Event
   btnEdit.forEach((btnedit) => {
     btnedit.addEventListener("click", (el) => {
       let id;
@@ -122,7 +125,7 @@ function addExpensesFun(expensesPara) {
         return item.id == id;
       });
 
-      expensesDel.value = expenses[0].title;
+      expensesInput.value = expenses[0].title;
       expensesAmount.value = expenses[0].amount;
 
       let tempList = itemList.filter(function (item) {
@@ -136,7 +139,7 @@ function addExpensesFun(expensesPara) {
     });
   });
 
-  //============ Button Delete =============
+  // Löschen-Button-Event
   btnDelete.forEach((btndelete) => {
     btndelete.addEventListener("click", (el) => {
       let id;
@@ -157,15 +160,16 @@ function addExpensesFun(expensesPara) {
       // Local Storage aktualisieren
       localStorage.setItem("expenses", JSON.stringify(itemList));
 
-      showBalanceFun();
+      showBalanceFun(); // Saldo aktualisieren
     });
   });
 }
 
-//============ Budget Function =============
+// Funktion zum Hinzufügen des Budgets
 function budgetFun() {
   const budgetValue = budgetInput.value;
 
+  // Validierung der Eingabe
   if (budgetValue == "" || budgetValue <= 0) {
     errorMessageFun("Bitte gib dein Budget ein | Mehr als 0€");
   } else {
@@ -175,18 +179,18 @@ function budgetFun() {
     // Budget im Local Storage speichern
     localStorage.setItem("budget", budgetValue);
 
-    showBalanceFun();
+    showBalanceFun(); // Saldo aktualisieren
   }
 }
 
-//============ Show Balance Function =============
+// Funktion zum Anzeigen des Saldos
 function showBalanceFun() {
   const expenses = totalExpensesFun();
   const total = parseInt(budgetCard.textContent || 0) - expenses;
   balanceCard.textContent = total;
 }
 
-//============ Total Expenses Function =============
+// Funktion zur Berechnung der Gesamtausgaben
 function totalExpensesFun() {
   let total = 0;
 
@@ -201,7 +205,7 @@ function totalExpensesFun() {
   return total;
 }
 
-//============ Error Message Function =============
+// Anzeige von Fehlermeldung
 function errorMessageFun(message) {
   errorMessage.innerHTML = `<p>${message}</p>`;
   errorMessage.classList.add("error");

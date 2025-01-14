@@ -1,179 +1,182 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --light: #1a1a1d;
-    --primary: #4ecca3;
-    --grey: #333;
-    --dark: #0e0e10;
-    --danger: #ff1e56;
-    --light-danger: #ff8e8e;
-    --neon-blue: #00e0ff;
-    --neon-purple: #562e5e;
-    --font-color: #f5f5f5;
+  --light: #ffffff;
+  --primary: #007bff; /* Seriöses Blau */
+  --grey: #f8f9fa; /* Helles Grau */
+  --dark: #343a40; /* Dunkles Grau */
+  --danger: #dc3545; /* Seriöses Rot */
+  --light-danger: #f8d7da;
+  --neon-blue: #007bff;
+  --neon-purple: #6f42c1;
+  --font-color: #212529; /* Dunkle Schriftfarbe */
+  --btn-edit-color: rgb(153, 248, 189);
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: var(--dark);
-    font-family: Arial, sans-serif;
-    color: var(--font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--light);
+  font-family: Arial, sans-serif;
+  color: var(--font-color);
 }
 
 .container {
-    max-width: 900px;
-    width: 100%;
-    padding: 2rem;
-    background-color: var(--grey);
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--grey);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 3.5rem;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
 }
 
 .error_message {
-    background-color: var(--danger);
-    color: var(--light);
-    text-align: center;
-    padding: 1rem;
-    border-radius: 5px;
-    display: none;
+  background-color: var(--danger);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5px;
+  display: none;
 }
 
 .budget_content {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.ur_budget, .ur_expenses {
-    flex: 1;
+.ur_budget,
+.ur_expenses {
+  flex: 1;
 }
 
-.ur_budget form, .ur_expenses form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.ur_budget form,
+.ur_expenses form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.budget_content input, .budget_content button {
-    padding: 0.8rem;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    font-family: inherit;
+.budget_content input,
+.budget_content button {
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid var(--dark);
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
 }
 
 .budget_content input {
-    background-color: #222;
-    color: var(--font-color);
+  background-color: var(--light);
+  color: var(--font-color);
 }
 
-
-
-
-.expenses_input, .expenses_amount {
-    background-color: var(--neon-blue);
-    color: var(--dark);
-    font-weight: bold;
-    text-align: center;
+.expenses_input,
+.expenses_amount {
+  background-color: var(--neon-blue);
+  color: var(--light);
+  font-weight: bold;
+  text-align: center;
 }
 
 .budget_content button {
-    cursor: pointer;
-    background-color: var(--primary);
-    color: var(--dark);
-    transition: transform 0.2s ease;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: var(--light);
+  transition: transform 0.2s ease;
 }
 
 .budget_content button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
 .cards li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background-color: var(--dark);
-    padding: 1.5rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    color: var(--font-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--grey);
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  color: var(--font-color);
 }
 
 .cards li:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 224, 255, 0.6);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
 }
 
 .cards .bx {
-    font-size: 2rem;
-    background-color: var(--neon-purple);
-    border-radius: 50%;
-    padding: 0.5rem;
-    color: var(--font-color);
+  font-size: 2rem;
+  background-color: var(--primary);
+  border-radius: 50%;
+  padding: 0.5rem;
+  color: var(--light);
 }
 
 .table_content {
-    margin-top: 1rem;
-    background-color: var(--grey);
-    padding: 1rem;
-    border-radius: 10px;
+  margin-top: 1rem;
+  background-color: var(--grey);
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .tbl_tr_content {
-    display: grid;
-    grid-template-columns: 1fr 3fr 2fr 1fr;
-    align-items: center;
-    background-color: var(--neon-purple);
-    color: var(--font-color);
-    padding: 0.5rem;
-    border-radius: 5px;
-    margin: 0.5rem 0;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr 1fr;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--light);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0.5rem 0;
 }
 
 .tbl_tr_content button {
-    background-color: var(--danger);
-    border: none;
-    color: var(--light);
-    padding: 0.4rem;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: var(--danger);
+  border: none;
+  color: var(--light);
+  padding: 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .tbl_tr_content button:first-child {
-    background-color: var(--primary);
+  background-color: var(--btn-edit-color);
+  color: var(--dark);
 }
 
 @media (max-width: 768px) {
-    .budget_content {
-        flex-direction: column;
-    }
-    .container {
-        padding: 1.5rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
+  .budget_content {
+    flex-direction: column;
+  }
+  .container {
+    padding: 1.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
 }
