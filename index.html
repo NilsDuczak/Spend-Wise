@@ -15,30 +15,36 @@
     <div class="container">
       <h2>Spend Wise</h2>
       <div class="error_message">
-        <p>Bitte gib dein Budget ein | Mehr als 0€</p>
+        <p>Please enter your budget | more than 0</p>
       </div>
       <div class="budget_content">
         <div class="ur_budget">
           <form>
-            <label for="budget">Dein Budget: </label>
+            <label for="budget">Budget: </label>
             <input
               type="number"
-              placeholder="Monatliche Einnahmen"
+              placeholder="Monthly Income"
               class="budget_input"
+              step="0.01"
             />
-            <button class="btn" id="btn_budget">Budget angeben</button>
+            <button class="btn" id="btn_budget">Set Budget</button>
           </form>
         </div>
         <div class="ur_expenses">
           <form>
-            <label for="expenses">Details zu deinen Kosten: </label>
-            <input type="text" placeholder="Wofür?" class="expenses_input" />
+            <label for="expenses">Details: </label>
+            <input
+              type="text"
+              placeholder="Description"
+              class="expenses_input"
+            />
             <input
               type="number"
-              placeholder="Wie viel?"
+              placeholder="    Amount"
               class="expenses_amount"
+              step="0.01"
             />
-            <button class="btn" id="btn_expenses">Hinzufügen</button>
+            <button class="btn" id="btn_expenses">Add</button>
           </form>
         </div>
       </div>
@@ -55,14 +61,14 @@
           <i class="bx bx-credit-card"></i>
           <span class="info">
             <h3><span>€</span><span class="expenses_card">0</span></h3>
-            <p>Ausgaben</p>
+            <p>Expenses</p>
           </span>
         </li>
         <li>
           <i class="bx bx-dollar"></i>
           <span class="info">
             <h3><span>€</span><span class="balance_card">0</span></h3>
-            <p>Saldo</p>
+            <p>Balance</p>
           </span>
         </li>
       </ul>
@@ -78,7 +84,7 @@
                     <li><span>€</span>600</li>
                     <li>
                         <button type="button" class="btn_edit">Edit</button>
-                        <button type="button" class="btn_delete">Löschen</button>
+                        <button type="button" class="btn_delete">Delete</button>
                     </li>
                 </ul> -->
         </div>

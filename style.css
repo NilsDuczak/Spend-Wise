@@ -6,14 +6,14 @@
 
 :root {
   --light: #ffffff;
-  --primary: #007bff; /* Seriöses Blau */
-  --grey: #f8f9fa; /* Helles Grau */
-  --dark: #343a40; /* Dunkles Grau */
-  --danger: #dc3545; /* Seriöses Rot */
+  --primary: #007bff;
+  --grey: #f8f9fa;
+  --dark: #343a40;
+  --danger: #dc3545;
   --light-danger: #f8d7da;
   --neon-blue: #007bff;
   --neon-purple: #6f42c1;
-  --font-color: #212529; /* Dunkle Schriftfarbe */
+  --font-color: #212529;
   --btn-edit-color: rgb(153, 248, 189);
 }
 

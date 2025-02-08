@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // load budget
   const storedBudget = localStorage.getItem("budget");
   if (storedBudget) {
-    budgetCard.textContent = storedBudget;
+    budgetCard.textContent = parseFloat(storedBudget).toFixed(2);
   }
 
   // load spendings
@@ -62,7 +62,7 @@ function expensesFun() {
   if (expensesDescValue == "" || expensesAmountValue == "" || budgetInput < 0) {
     showErrorMessage("Please Enter Expenses Desc or Expense Amount!");
   } else {
-    let amount = parseInt(expensesAmountValue);
+    let amount = parseFloat(expensesAmountValue);
     expensesAmount.value = "";
     expensesInput.value = "";
 
@@ -87,10 +87,10 @@ function addExpensesFun(expenses) {
   const html = `<ul class="tbl_tr_content">
                     <li data-id=${expenses.id}>${expenses.id}</li>
                     <li>${expenses.title}</li>
-                    <li>${expenses.amount}<span>€</span></li>
+                    <li><span>€</span>${expenses.amount.toFixed(2)}</li>
                     <li>
                         <button type="button" class="btn_edit">Edit</button>
-                        <button type="button" class="btn_delete">Löschen</button>
+                        <button type="button" class="btn_delete">Delete</button>
                     </li>
                  </ul>`;
 
@@ -153,12 +153,12 @@ function addExpensesFun(expenses) {
 }
 
 function budgetFun() {
-  const budgetValue = budgetInput.value;
+  const budgetValue = parseFloat(budgetInput.value);
 
   if (budgetValue == "" || budgetValue <= 0) {
     showErrorMessage("Bitte gib dein Budget ein | Mehr als 0€");
   } else {
-    budgetCard.textContent = budgetValue;
+    budgetCard.textContent = budgetValue.toFixed(2);
     budgetInput.value = "";
 
     localStorage.setItem("budget", budgetValue);
@@ -169,8 +169,8 @@ function budgetFun() {
 
 function showBalanceFun() {
   const expenses = totalExpensesFun();
-  const total = parseInt(budgetCard.textContent || 0) - expenses;
-  balanceCard.textContent = total;
+  const total = parseFloat(budgetCard.textContent || 0) - expenses;
+  balanceCard.textContent = total.toFixed(2);
 }
 
 function totalExpensesFun() {
@@ -183,7 +183,7 @@ function totalExpensesFun() {
     }, 0);
   }
 
-  expensesCard.textContent = total;
+  expensesCard.textContent = total.toFixed(2);
   return total;
 }
 
