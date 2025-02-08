@@ -15,7 +15,7 @@ A simple yet effective budget management application that allows users to track 
 - **HTML5**: For structuring the app’s content.
 - **CSS3**: For styling and responsive design.
 
-- ## 🔄 Cloning the Repository
+## 🔄 Cloning the Repository
 
 To get a local copy of **Spend Wise**, follow these steps:
 
