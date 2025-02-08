@@ -15,5 +15,18 @@ A simple yet effective budget management application that allows users to track 
 - **HTML5**: For structuring the app’s content.
 - **CSS3**: For styling and responsive design.
 
+- ## 🔄 Cloning the Repository
+
+To get a local copy of **Spend Wise**, follow these steps:
+
+1. **Ensure you have Git installed**  
+   If you don’t have Git, [download and install it here](https://git-scm.com/downloads).
+
+2. **Clone the repository**  
+   Open your terminal or command prompt and run:  
+   ```sh
+   git clone https://github.com/NilsDuczak/spend-wise.git
+
+
 
    
